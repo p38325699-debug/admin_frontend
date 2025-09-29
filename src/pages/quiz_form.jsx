@@ -32,13 +32,6 @@ const QuizForm = () => {
       correct_option: ["A", "B", "C", "D"][correctIndex],
     };
 
-    // try {
-    //   const res = await fetch("http://localhost:5000/api/quizzes", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(payload),
-    //   });
-
     try {
   const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/quizzes`, {
     method: "POST",
@@ -59,49 +52,49 @@ const QuizForm = () => {
     }
   };
 
-  // Video submit
-  const handleVideoSubmit = async (e) => {
-    e.preventDefault();
-    if (!videoTitle || (!videoUrl && !videoFile)) {
-      alert("Please provide a title and either URL or file!");
-      return;
-    }
+const handleVideoSubmit = async (e) => {
+  e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("title", videoTitle);
+  if (!videoTitle || (!videoUrl && !videoFile)) {
+    alert("Please provide a title and either URL or file!");
+    return;
+  }
+
+  try {
+    let res;
+
     if (videoFile) {
-      formData.append("videoFile", videoFile); // backend must handle file upload
+      // Send file via FormData
+      const formData = new FormData();
+      formData.append("title", videoTitle);
+      formData.append("videoFile", videoFile);
+
+      res = await fetch(`${BASE_URL}/api/videos`, {
+        method: "POST",
+        body: formData,
+      });
     } else {
-      formData.append("video_url", videoUrl);
+      // Send URL via JSON
+      res = await fetch(`${BASE_URL}/api/videos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: videoTitle, video_url: videoUrl }),
+      });
     }
 
-    // try {
-    //   const res = await fetch("http://localhost:5000/api/videos", {
-    //     method: "POST",
-    //     body: formData,
-    //   });
+    if (!res.ok) throw new Error("Failed to upload video");
+    await res.json();
+    alert("✅ Video uploaded successfully!");
 
-    try {
-  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/videos`, {
-    method: "POST",
-    body: formData,
-  });
+    // Reset form
+    setVideoTitle("");
+    setVideoUrl("");
+    setVideoFile(null);
+  } catch (err) {
+    alert(err.message);
+  }
+};
 
-
-    
-
-      if (!res.ok) throw new Error("Failed to upload video");
-      const data = await res.json();
-      alert("✅ Video uploaded successfully!");
-
-      // reset
-      setVideoTitle("");
-      setVideoUrl("");
-      setVideoFile(null);
-    } catch (err) {
-      alert(err.message);
-    }
-  };
 
   return (
     <div className="max-w-[76vw] p-6 bg-[#292828] text-amber-50 rounded shadow flex flex-col">
