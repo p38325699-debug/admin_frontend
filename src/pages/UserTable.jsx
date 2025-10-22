@@ -40,17 +40,6 @@ const UserTable = () => {
     .catch((err) => console.error("Error fetching users:", err));
 }, []);
 
-
-
-  // Check if pause period has expired (30 days)
-  // const isPauseExpired = (pauseStartDate) => {
-  //   const pauseStart = new Date(pauseStartDate);
-  //   const now = new Date();
-  //   const diffTime = Math.abs(now - pauseStart);
-  //   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  //   return diffDays >= 30;
-  // };
-
  
 const isPauseExpired = (pauseStartDate) => {
   const pauseStart = new Date(pauseStartDate);

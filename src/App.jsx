@@ -10,9 +10,17 @@ import HomeData from "./pages/HomeData";
 import TaskData from "./pages/TaskData";
 import QuizForm from "./pages/quiz_form";
 import QuizTable from "./pages/quiz_table";
+import PaymentPage from "./pages/PaymentPage";
+import NotificationsPage from "./pages/NotificationsPage";
+import UPIScanner from "./pages/UPIScanner";
+import WithdrawalPage from "./pages/WithdrawalPage";
+import LandingPage from "./pages/LandingPage";
+
+
 
 const AppLayout = () => {
   const location = useLocation();
+console.log("✅ API BASE URL:", import.meta.env.VITE_API_BASE_URL);
 
   // Hide sidebar & header on login page
   const isLoginPage = location.pathname === "/login" || location.pathname === "/";
@@ -25,8 +33,9 @@ const AppLayout = () => {
         <div className={!isLoginPage ? "p-6 ml-60" : ""}>
           <Routes>
             {/* Login Page */}
-            <Route path="/" element={<Login />} />
-            <Route path="/login" element={<Login />} />
+           <Route path="/" element={<LandingPage />} />
+<Route path="/login" element={<Login />} />
+
 
             {/* After login */}
             <Route path="/dashboard" element={<Dashboard />} />
@@ -37,6 +46,10 @@ const AppLayout = () => {
             <Route path="/task-data" element={<TaskData />} />
             <Route path="/quiz_form" element={<QuizForm />} />
             <Route path="/quiz_table" element={<QuizTable />} />
+            <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/withdrawal" element={<WithdrawalPage />} />
+             <Route path="/upi-scanner" element={<UPIScanner />} />
             <Route path="/settings" element={<Settings />} />
 
             {/* Default fallback */}

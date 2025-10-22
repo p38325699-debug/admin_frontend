@@ -3,5 +3,21 @@
 /* index.css */
 html, body {
   height: 100%;
-  overflow: hidden; /* Disable full page scroll */
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+/* Hide scrollbar in Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar in IE/old Edge */
+body {
+  -ms-overflow-style: none;
 }

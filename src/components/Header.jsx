@@ -4,26 +4,24 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 
 const Header = () => {
   return (
-    <header className="bg-[#292828] rounded-lg mx-61.5  border-b-1 border-gray-700 w-[80.5vw] shadow px-0 py-4 flex justify-between items-center">
-      <h1 className="text-xl font-bold text-white ml-4">Admin Panel</h1>
+    <header className="bg-gradient-to-r from-gray-900 to-black rounded-lg ml-64 border border-gray-800 w-[calc(100vw-16rem)] shadow-2xl px-6 py-4 flex justify-between items-center backdrop-blur-sm bg-opacity-95">
+      <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent ml-4">
+        Admin Panel
+      </h1>
 
       <div className="flex items-center gap-6 mr-6">
         {/* Notification Icon with Badge */}
-        <div className="relative cursor-pointer">
-          <NotificationsIcon className="text-white text-4xl" />
-          <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[12px] font-bold px-[5px] py-0 rounded-full">
-            3
-          </span>
-        </div>
+       
 
-        {/* Welcome + Profile */}
-        {/* <p className="text-white font-medium">Welcome, Admin</p> */}
-        <div className="p-[4px] rounded-full bg-gradient-to-br from-[#c20af5] to-[#670383]">
-          <img
-            src="/assets/profile.jpg"
-            alt="Profile"
-            className="w-10 h-10 rounded-full bg-white"
-          />
+        {/* Profile with Gradient */}
+        <div className="group cursor-pointer">
+          <div className="p-[3px] rounded-full bg-gradient-to-br from-violet-500 to-purple-600 group-hover:from-violet-400 group-hover:to-purple-500 transition-all duration-300 group-hover:scale-105">
+            <img
+              src="/assets/male.jpg"
+              alt="Profile"
+              className="w-10.5 h-10.5 rounded-full bg-gray-800 border-1 border-gray-900 transition-all duration-300 group-hover:border-gray-800"
+            />
+          </div>
         </div>
       </div>
     </header>
