@@ -15,6 +15,7 @@ import NotificationsPage from "./pages/NotificationsPage";
 import UPIScanner from "./pages/UPIScanner";
 import WithdrawalPage from "./pages/WithdrawalPage";
 import LandingPage from "./pages/LandingPage";
+import CryptoPay from "./pages/CryptoPay";
 
 
 
@@ -50,6 +51,7 @@ console.log("✅ API BASE URL:", import.meta.env.VITE_API_BASE_URL);
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/withdrawal" element={<WithdrawalPage />} />
              <Route path="/upi-scanner" element={<UPIScanner />} />
+             <Route path="/crypto-pay" element={<CryptoPay />} />
             <Route path="/settings" element={<Settings />} />
 
             {/* Default fallback */}

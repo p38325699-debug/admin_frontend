@@ -9,6 +9,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin"; // 🪙 Crypto icon
 
 const Sidebar = () => {
   const location = useLocation();
@@ -22,10 +23,10 @@ const Sidebar = () => {
     { path: "/home-data", label: "Home Manage", icon: <HomeIcon /> },
     { path: "/task-data", label: "Task Manage", icon: <AssignmentIcon /> },
     { path: "/payment", label: "Payment", icon: <PaymentIcon /> },
+    { path: "/crypto-pay", label: "Crypto Pay", icon: <CurrencyBitcoinIcon /> }, // 🟢 New Menu Item
     { path: "/upi-scanner", label: "UPI Scanner", icon: <CloudUploadIcon /> },
-     { path: "/notifications", label: "Notifications", icon: <NotificationsIcon /> },
+    { path: "/notifications", label: "Notifications", icon: <NotificationsIcon /> },
     { path: "/withdrawal", label: "Withdrawal", icon: <AccountBalanceWalletIcon /> },
-
   ];
 
   return (
@@ -43,7 +44,7 @@ const Sidebar = () => {
       {/* Menu */}
       <div className="flex-1 px-4 py-6 overflow-y-auto">
         <nav className="space-y-1">
-          {menuItems.map((item, index) => (
+          {menuItems.map((item) => (
             <div key={item.path} className="relative group">
               {isActive(item.path) && (
                 <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-10 bg-gradient-to-b from-violet-500 to-purple-600 rounded-r-full shadow-lg shadow-violet-500/50" />
@@ -57,12 +58,9 @@ const Sidebar = () => {
                       : "text-gray-400 hover:text-white hover:bg-gray-800/50 hover:scale-[1.02] hover:shadow-lg border border-transparent"
                   }`}
               >
-                {/* Background glow effect for active items */}
                 {isActive(item.path) && (
                   <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-purple-500/5 blur-sm" />
                 )}
-                
-                {/* Icon with enhanced styling */}
                 <span
                   className={`relative z-10 text-xl transition-all duration-300 ${
                     isActive(item.path)
@@ -72,8 +70,6 @@ const Sidebar = () => {
                 >
                   {item.icon}
                 </span>
-                
-                {/* Label with enhanced typography */}
                 <span
                   className={`relative z-10 font-medium transition-all duration-300 ${
                     isActive(item.path)
@@ -83,8 +79,6 @@ const Sidebar = () => {
                 >
                   {item.label}
                 </span>
-
-                {/* Hover effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
               </Link>
             </div>
@@ -99,23 +93,18 @@ const Sidebar = () => {
             to="/login"
             className="flex items-center gap-4 px-4 py-3 rounded-2xl text-gray-400 hover:text-white transition-all duration-300 group hover:bg-gradient-to-r hover:from-red-500/10 hover:to-red-600/5 hover:border hover:border-red-500/20 relative overflow-hidden"
           >
-            {/* Animated background */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-            
             <LogoutIcon className="text-xl relative z-10 group-hover:text-red-400 transition-colors duration-300" />
             <span className="text-[15px] font-medium relative z-10 group-hover:text-red-100 transition-colors duration-300">
               Logout
             </span>
           </Link>
         </div>
-        
-        {/* User info or version */}
         <div className="mt-4 text-center">
           <p className="text-xs text-gray-500 font-light">v2.1.0</p>
         </div>
       </div>
 
-      {/* Subtle decorative elements */}
       <div className="absolute top-1/4 -right-1 w-2 h-16 bg-gradient-to-b from-violet-500 to-purple-600 rounded-l-full opacity-20 blur-sm" />
       <div className="absolute bottom-1/3 -right-1 w-1 h-8 bg-violet-400 rounded-l-full opacity-30 blur-sm" />
     </aside>

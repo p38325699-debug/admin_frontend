@@ -318,7 +318,7 @@ const handleSubmit = async (e) => {
                   </div>
                   <div>
                     <p className="font-semibold">Email</p>
-                    <p>support@knowo.world</p>
+                    <p>m23204126@gmail.com</p>
                   </div>
                 </div>
                 
@@ -328,7 +328,7 @@ const handleSubmit = async (e) => {
                   </div>
                   <div>
                     <p className="font-semibold">Phone</p>
-                    <p>+91-XXXXXXXXXX</p>
+                    <p>+91 7056948928</p>
                   </div>
                 </div>
                 
@@ -338,7 +338,7 @@ const handleSubmit = async (e) => {
                   </div>
                   <div>
                     <p className="font-semibold">Address</p>
-                    <p>India</p>
+                    <p>ASIA</p>
                   </div>
                 </div>
               </div>
@@ -417,15 +417,15 @@ const handleSubmit = async (e) => {
           <div className="flex justify-center gap-8 mb-8 flex-wrap">
             <div className="flex items-center gap-3 text-gray-400 hover:text-violet-400 transition-colors">
               <FaEnvelope />
-              <span>support@knowo.world</span>
+              <span>m23204126@gmail.com</span>
             </div>
             <div className="flex items-center gap-3 text-gray-400 hover:text-violet-400 transition-colors">
               <FaPhone />
-              <span>+91-XXXXXXXXXX</span>
+              <span>+91 7056948928</span>
             </div>
             <div className="flex items-center gap-3 text-gray-400 hover:text-violet-400 transition-colors">
               <FaMapMarkerAlt />
-              <span>India</span>
+              <span>ASIA</span>
             </div>
           </div>
           
