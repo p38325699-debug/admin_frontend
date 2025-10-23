@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft} from 'react-icons/fa';
 
 const PrivacyPolicy = () => {
+  const navigate = useNavigate();
+
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-950 text-gray-200 py-12 px-6 md:px-16 lg:px-32">
+      {/* Back Button */}
+<div className="flex items-center mb-8">
+          <button
+            onClick={() => navigate('/')}
+            className="flex cursor-pointer items-center gap-2 text-violet-400 hover:text-violet-300 transition-colors mr-4"
+          >
+            <FaArrowLeft />
+            <span>Back</span>
+          </button>
+        </div>
+
       <h1 className="text-3xl font-bold text-violet-400 mb-6">
         Privacy Policy
       </h1>

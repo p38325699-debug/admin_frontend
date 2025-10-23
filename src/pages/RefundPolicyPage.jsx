@@ -1,22 +1,26 @@
 // src/pages/RefundPolicyPage.jsx
-import React from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaShieldAlt, FaFileContract, FaEnvelope } from 'react-icons/fa';
 
 const RefundPolicyPage = () => {
   const navigate = useNavigate();
 
+ useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black pt-20 px-6 py-12">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black pt-2 px-6 py-2">
+      {/* <div className="max-w-4xl mx-auto"> */}
         {/* Header */}
         <div className="flex items-center mb-8">
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-2 text-violet-400 hover:text-violet-300 transition-colors mr-4"
+            className="flex cursor-pointer items-center gap-2 text-violet-400 hover:text-violet-300 transition-colors mr-4"
           >
             <FaArrowLeft />
-            <span>Back to Home</span>
+            <span>Back</span>
           </button>
         </div>
 
@@ -183,7 +187,7 @@ const RefundPolicyPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };

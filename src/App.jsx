@@ -20,6 +20,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
+import AppInstruction from "./pages/AppInstruction";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 
 const AppLayout = () => {
@@ -36,6 +37,7 @@ const hiddenRoutes = [
   "/contact",
   "/refund-policy",     // ✅ hide layout on refund policy
   "/about-us",          // ✅ hide layout on about us
+  "/app-instruction"    // ✅ hide layout on app instruction
 ];
 
 
@@ -88,6 +90,7 @@ const hiddenRoutes = [
             <Route path="/crypto-pay" element={<CryptoPay />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/app-instruction" element={<AppInstruction />} />
 
 
             {/* Default fallback */}

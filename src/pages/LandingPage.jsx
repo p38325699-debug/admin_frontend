@@ -1,6 +1,7 @@
 // src/pages/LandingPage.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { FaGooglePlay, FaEnvelope, FaPhone, FaMapMarkerAlt, FaBars, FaTimes } from "react-icons/fa";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
@@ -586,15 +587,13 @@ const LandingPage = () => {
             Knowo — The innovative education platform where learning meets engagement. Complete educational tasks, interact with content, and earn reward points for your knowledge journey.
           </p>
 
-          <a
-            href="https://play.google.com/store/apps/details?id=com.quiz.com123"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-full shadow-2xl shadow-violet-500/30 hover:shadow-violet-500/50 transition-all duration-300 transform hover:scale-105 mb-8"
-          >
-            <FaGooglePlay className="text-2xl" />
-            <span className="text-lg">Get it on Google Play</span>
-          </a>
+          <Link
+  to="/app-instruction"
+  className="inline-flex items-center gap-3 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-full shadow-2xl shadow-violet-500/30 hover:shadow-violet-500/50 transition-all duration-300 transform hover:scale-105 mb-8"
+>
+  <FaGooglePlay className="text-2xl" />
+  <span className="text-lg">App Instructions</span>
+</Link>
         </div>
       </section>
 
@@ -875,16 +874,7 @@ const LandingPage = () => {
                 </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-gray-800">
-                <h4 className="text-lg font-semibold mb-4 text-violet-300">App Installation</h4>
-                <ol className="text-gray-400 space-y-2 text-sm">
-                  <li>1. Download from Google Play Store</li>
-                  <li>2. Sign up with your details</li>
-                  <li>3. Verify your email with OTP</li>
-                  <li>4. Wait for account activation</li>
-                  <li>5. Start learning and earning reward points!</li>
-                </ol>
-              </div>
+              
             </div>
 
             <form
@@ -969,9 +959,9 @@ const LandingPage = () => {
 
     {/* Policy Links */}
     <div className="flex flex-wrap justify-center gap-6 text-sm border-t border-gray-800 pt-6">
-      <button onClick={() => navigate('/privacy-policy')} className="text-violet-400 hover:text-violet-300 transition-colors">Privacy Policy</button>
-      <button onClick={() => navigate('/terms-and-conditions')} className="text-violet-400 hover:text-violet-300 transition-colors">Terms & Conditions</button>
-      <button onClick={() => navigate('/refund-policy')} className="text-violet-400 hover:text-violet-300 transition-colors">Refund Policy</button>
+      <button onClick={() => navigate('/privacy-policy')} className="text-violet-400 cursor-pointer hover:text-violet-300 transition-colors">Privacy Policy</button>
+      <button onClick={() => navigate('/terms-and-conditions')} className="text-violet-400 cursor-pointer hover:text-violet-300 transition-colors">Terms & Conditions</button>
+      <button onClick={() => navigate('/refund-policy')} className="text-violet-400 cursor-pointer hover:text-violet-300 transition-colors">Refund Policy</button>
     </div>
 
     {/* Bottom Note */}
