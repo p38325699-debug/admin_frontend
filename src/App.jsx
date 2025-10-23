@@ -16,32 +16,60 @@ import UPIScanner from "./pages/UPIScanner";
 import WithdrawalPage from "./pages/WithdrawalPage";
 import LandingPage from "./pages/LandingPage";
 import CryptoPay from "./pages/CryptoPay";
-
-
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsConditions from "./pages/TermsConditions";
+import Contact from "./pages/Contact";
 
 const AppLayout = () => {
   const location = useLocation();
-console.log("✅ API BASE URL:", import.meta.env.VITE_API_BASE_URL);
 
-  // Hide sidebar & header on login page
-  const isLoginPage = location.pathname === "/login" || location.pathname === "/";
+  console.log("✅ API BASE URL:", import.meta.env.VITE_API_BASE_URL);
+
+  // Hide sidebar & header on specific routes
+  const hiddenRoutes = [
+    "/",
+    "/admin",
+    "/privacy-policy",
+    "/terms-and-conditions",
+    "/contact",
+  ];
+
+  const hideLayout = hiddenRoutes.includes(location.pathname);
 
   return (
-    <div className="flex">
-      {!isLoginPage && <Sidebar />}
-      <div className="flex-1 bg-black min-h-screen">
-        {!isLoginPage && <Header />}
-        <div className={!isLoginPage ? "p-6 ml-60" : ""}>
+    <div className="flex bg-black min-h-screen text-white">
+      {/* Sidebar */}
+      {!hideLayout && (
+        <div className="fixed top-0 left-0 h-full w-60 bg-gray-900 z-40">
+          <Sidebar />
+        </div>
+      )}
+
+      {/* Main Area */}
+      <div
+        className={`flex-1 flex flex-col transition-all duration-300 ${
+          !hideLayout ? "ml-60" : ""
+        }`}
+      >
+        {/* Header */}
+        {!hideLayout && (
+          <div className="sticky top-0 z-30 bg-gray-950 shadow-md">
+            <Header />
+          </div>
+        )}
+
+        {/* Page Content */}
+        <main className="flex-1 p-6">
           <Routes>
-            {/* Login Page */}
-           <Route path="/" element={<LandingPage />} />
-<Route path="/login" element={<Login />} />
+            {/* Public Routes */}
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/admin" element={<Login />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-and-conditions" element={<TermsConditions />} />
+            <Route path="/contact" element={<Contact />} />
 
-
-            {/* After login */}
+            {/* Protected Routes */}
             <Route path="/dashboard" element={<Dashboard />} />
-
-            {/* Other pages */}
             <Route path="/user-table" element={<UserTable />} />
             <Route path="/home-data" element={<HomeData />} />
             <Route path="/task-data" element={<TaskData />} />
@@ -50,25 +78,23 @@ console.log("✅ API BASE URL:", import.meta.env.VITE_API_BASE_URL);
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/withdrawal" element={<WithdrawalPage />} />
-             <Route path="/upi-scanner" element={<UPIScanner />} />
-             <Route path="/crypto-pay" element={<CryptoPay />} />
+            <Route path="/upi-scanner" element={<UPIScanner />} />
+            <Route path="/crypto-pay" element={<CryptoPay />} />
             <Route path="/settings" element={<Settings />} />
 
             {/* Default fallback */}
             <Route path="*" element={<Dashboard />} />
           </Routes>
-        </div>
+        </main>
       </div>
     </div>
   );
 };
 
-const App = () => {
-  return (
-    <Router>
-      <AppLayout />
-    </Router>
-  );
-};
+const App = () => (
+  <Router>
+    <AppLayout />
+  </Router>
+);
 
 export default App;
