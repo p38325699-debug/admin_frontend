@@ -1,7 +1,7 @@
 // src/pages/RefundPolicyPage.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaShield, FaFileContract, FaEnvelope } from 'react-icons/fa';
+import { FaArrowLeft, FaShieldAlt, FaFileContract, FaEnvelope } from 'react-icons/fa';
 
 const RefundPolicyPage = () => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const RefundPolicyPage = () => {
           {/* Compliance Banner */}
           <div className="bg-violet-500/10 border border-violet-500/30 rounded-lg p-6 mb-8">
             <div className="flex items-start gap-4">
-              <FaShield className="text-violet-400 text-xl mt-1 flex-shrink-0" />
+              <FaShieldAlt className="text-violet-400 text-xl mt-1 flex-shrink-0" />
               <div>
                 <h3 className="text-violet-300 font-semibold text-lg mb-2">Important Compliance Notice</h3>
                 <p className="text-violet-200">

@@ -598,30 +598,44 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Enhanced About Section */}
-      <section id="about" className="py-0 px-6 bg-black">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8 text-violet-400">About Knowo</h2>
-          <p className="text-gray-400 text-lg leading-relaxed mb-12">
-            Knowo is an innovative education-based online platform designed to make learning more interactive, engaging, and accessible. The platform allows users to earn reward points by engaging in educational and knowledge-building activities.
-          </p>
-          
-          <div className="grid md:grid-cols-2 gap-8 mt-12">
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-violet-500/10 hover:border-violet-500/30 transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-4 text-violet-300">Our Mission</h3>
-              <p className="text-gray-400">
-                To create an ecosystem where education meets engagement, making learning both intellectually enriching and rewarding through educational incentives.
-              </p>
-            </div>
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-violet-500/10 hover:border-violet-500/30 transition-all duration-300">
-              <h3 className="text-xl font-semibold mb-4 text-violet-300">What We Offer</h3>
-              <p className="text-gray-400">
-                Interactive quizzes, educational videos, reward point systems, and premium subscription plans for enhanced learning experiences.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+     {/* Enhanced About Section */}
+<section id="about" className="py-0 px-6 bg-black">
+  <div className="max-w-4xl mx-auto text-center">
+    <h2 className="text-4xl font-bold mb-8 text-violet-400">About Knowo</h2>
+    <p className="text-gray-400 text-lg leading-relaxed mb-12">
+      Knowo is an innovative education-based online platform designed to make learning more interactive, engaging, and accessible. The platform allows users to earn reward points by engaging in educational and knowledge-building activities.
+    </p>
+
+    {/* Two-column grid */}
+    <div className="grid md:grid-cols-2 gap-8 mt-12">
+      <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-violet-500/10 hover:border-violet-500/30 transition-all duration-300">
+        <h3 className="text-xl font-semibold mb-4 text-violet-300">Our Mission</h3>
+        <p className="text-gray-400">
+          To create an ecosystem where education meets engagement, making learning both intellectually enriching and rewarding through educational incentives.
+        </p>
+      </div>
+      <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-violet-500/10 hover:border-violet-500/30 transition-all duration-300">
+        <h3 className="text-xl font-semibold mb-4 text-violet-300">What We Offer</h3>
+        <p className="text-gray-400">
+          Interactive quizzes, educational videos, reward point systems, and premium subscription plans for enhanced learning experiences.
+        </p>
+      </div>
+    </div>
+
+    {/* Centered Button */}
+    <div className="mt-10 flex justify-center">
+      <a
+        href="/about-us"
+        className="inline-block px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl shadow-md transition-all duration-300"
+      >
+        More About Us →
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
 
       {/* Enhanced Features Section */}
       <section id="features" className="py-20 px-6 bg-gradient-to-b from-black to-gray-900">
@@ -676,7 +690,7 @@ const LandingPage = () => {
       </section>
 
       {/* UPDATED Pricing Plans Section - Cryptomus Compliant */}
-      <section id="pricing" className="py-20 px-6 bg-black">
+      {/* <section id="pricing" className="py-20 px-6 bg-black">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center text-violet-400">Learning Plans</h2>
           <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
@@ -707,7 +721,54 @@ const LandingPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+
+{/* UPDATED Pricing Plans Section - Cryptomus Compliant */}
+<section id="pricing" className="py-20 px-6 bg-black">
+  <div className="max-w-6xl mx-auto">
+    <h2 className="text-4xl font-bold mb-6 text-center text-violet-400">Learning Plans</h2>
+    
+    {/* Crypto Compliance Banner */}
+    <div className="max-w-2xl mx-auto mb-12 p-4 border-l-4 border-violet-400 bg-gray-900 text-gray-300 text-sm rounded-lg">
+      ⚠️ Note: Cryptocurrency payments are accepted <strong>only for purchasing learning plans</strong>. 
+      No financial returns, profit, or investment gains are associated with these payments. 
+      All points and rewards are educational incentives.
+    </div>
+    
+    <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+      Choose the plan that fits your learning goals. Higher tiers unlock premium educational content and enhanced reward point systems.
+    </p>
+    
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {pricingPlans.map((plan, i) => (
+        <div
+          key={i}
+          className="bg-gradient-to-b from-gray-800 to-black p-8 rounded-2xl border border-violet-500/10 shadow-lg hover:shadow-violet-500/20 transition-all duration-300"
+        >
+          <div className={`bg-gradient-to-r ${plan.color} text-white py-2 px-4 rounded-lg text-center mb-6`}>
+            <h3 className="text-xl font-bold">{plan.name}</h3>
+          </div>
+         
+          <div className="text-center mb-6">
+            <span className="text-3xl font-bold text-violet-400">{plan.price}</span>
+            {plan.price !== "Free" && <span className="text-gray-400 text-sm ml-2">/45 days</span>}
+          </div>
+          
+          <p className="text-gray-300 text-center mb-6 text-sm leading-relaxed">
+            {plan.description}
+          </p>
+          
+          {/* Optional Button */}
+          {plan.price !== "Free" && (
+            <button className="w-full bg-gradient-to-r from-violet-500 to-purple-600 py-3 rounded-xl font-semibold text-white hover:opacity-90 shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40 transition-all duration-300">
+              Buy with Crypto
+            </button>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Enhanced Testimonials */}
       <section id="testimonials" className="py-12 px-6 bg-gradient-to-b from-black to-gray-900">

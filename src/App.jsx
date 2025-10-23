@@ -19,20 +19,25 @@ import CryptoPay from "./pages/CryptoPay";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import Contact from "./pages/Contact";
+import AboutUs from "./pages/AboutUs";
+import RefundPolicyPage from "./pages/RefundPolicyPage";
 
 const AppLayout = () => {
   const location = useLocation();
 
   console.log("✅ API BASE URL:", import.meta.env.VITE_API_BASE_URL);
 
-  // Hide sidebar & header on specific routes
-  const hiddenRoutes = [
-    "/",
-    "/admin",
-    "/privacy-policy",
-    "/terms-and-conditions",
-    "/contact",
-  ];
+// Hide sidebar & header on specific routes
+const hiddenRoutes = [
+  "/",
+  "/admin",
+  "/privacy-policy",
+  "/terms-and-conditions",
+  "/contact",
+  "/refund-policy",     // ✅ hide layout on refund policy
+  "/about-us",          // ✅ hide layout on about us
+];
+
 
   const hideLayout = hiddenRoutes.includes(location.pathname);
 
@@ -77,10 +82,13 @@ const AppLayout = () => {
             <Route path="/quiz_table" element={<QuizTable />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
+            <Route path="/refund-policy" element={<RefundPolicyPage />} />
             <Route path="/withdrawal" element={<WithdrawalPage />} />
             <Route path="/upi-scanner" element={<UPIScanner />} />
             <Route path="/crypto-pay" element={<CryptoPay />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/about-us" element={<AboutUs />} />
+
 
             {/* Default fallback */}
             <Route path="*" element={<Dashboard />} />
