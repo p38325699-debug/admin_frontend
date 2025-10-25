@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { FaGooglePlay, FaEnvelope, FaPhone, FaMapMarkerAlt, FaBars, FaTimes } from "react-icons/fa";
+import { FaGooglePlay,FaTelegram, FaEnvelope, FaPhone, FaMapMarkerAlt, FaBars, FaTimes } from "react-icons/fa";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 // Legal Pages Components
@@ -351,6 +351,9 @@ const LandingPage = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState("");
+  const [showTelegramPopup, setShowTelegramPopup] = useState(true);
+
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -418,18 +421,28 @@ const LandingPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname]);
 
-  // If not on home page, render the legal pages
-  if (location.pathname !== '/') {
-    return (
-      <Routes>
-        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-        <Route path="/terms-and-conditions" element={<TermsConditionsPage />} />
-        <Route path="/refund-policy" element={<RefundPolicyPage />} />
-        <Route path="/aml-policy" element={<AMLPolicyPage />} />
-      </Routes>
-    );
-  }
+  useEffect(() => {
+  if (location.pathname === "/") {
+     const timer = setTimeout(() => setShowTelegramPopup(true), 500); // delay 0.5s
+     return () => clearTimeout(timer);
+   }
+ }, [location.pathname]);
 
+  // If not on home page, render the legal pages
+if (location.pathname !== '/') {
+  return (
+    <Routes>
+      <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+      <Route path="/terms-and-conditions" element={<TermsConditionsPage />} />
+      <Route path="/refund-policy" element={<RefundPolicyPage />} />
+      <Route path="/aml-policy" element={<AMLPolicyPage />} />
+    </Routes>
+  );
+}
+
+// 👇 Main landing page content goes here
+
+   
   // UPDATED PRICING PLANS - Cryptomus Compliant
   const pricingPlans = [
     { 
@@ -489,7 +502,40 @@ const LandingPage = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-black text-gray-200 font-sans">
+<div className="bg-gradient-to-b from-gray-900 to-black text-gray-200 font-sans">
+
+
+
+       {/* 🟩 Telegram Popup */}
+    {showTelegramPopup && (
+      <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
+        <div className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-lg p-6 max-w-sm w-[90%] text-center relative">
+          <button
+            onClick={() => setShowTelegramPopup(false)}
+            className="absolute top-3 right-3 text-gray-600 hover:text-red-500"
+          >
+            ✕
+          </button>
+          <div className="flex flex-col items-center space-y-4">
+            <FaTelegram className="text-violet-500 text-6xl" />
+            <h2 className="text-lg font-semibold text-gray-800">Join Our Telegram!</h2>
+            <p className="text-gray-600 text-sm">
+              Stay updated with the latest announcements and updates.
+            </p>
+            <a
+              href="https://t.me/KnowoOfficial"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            >
+              Join Now
+            </a>
+          </div>
+        </div>
+      </div>
+    )}
+  
+
       {/* Enhanced Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-800 shadow-lg">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -688,39 +734,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* UPDATED Pricing Plans Section - Cryptomus Compliant */}
-      {/* <section id="pricing" className="py-20 px-6 bg-black">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center text-violet-400">Learning Plans</h2>
-          <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-            Choose the plan that fits your learning goals. Higher tiers unlock premium educational content and enhanced reward point systems.
-          </p>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {pricingPlans.map((plan, i) => (
-              <div
-                key={i}
-                className="bg-gradient-to-b from-gray-800 to-black p-8 rounded-2xl border border-violet-500/10 shadow-lg hover:shadow-violet-500/20 transition-all duration-300"
-              >
-                <div className={`bg-gradient-to-r ${plan.color} text-white py-2 px-4 rounded-lg text-center mb-6`}>
-                  <h3 className="text-xl font-bold">{plan.name}</h3>
-                </div>
-               
-                <div className="text-center mb-6">
-                  <span className="text-3xl font-bold text-violet-400">{plan.price}</span>
-                  {plan.price !== "Free" && <span className="text-gray-400 text-sm ml-2">/45 days</span>}
-                </div>
-                
-                <p className="text-gray-300 text-center mb-6 text-sm leading-relaxed">
-                  {plan.description}
-                </p>
-                
-               
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
+    
 
 {/* UPDATED Pricing Plans Section - Cryptomus Compliant */}
 <section id="pricing" className="py-20 px-6 bg-black">
@@ -941,12 +955,12 @@ const LandingPage = () => {
         </p>
       </div>
 
-      {/* Contact Details */}
-      <div className="text-center md:text-left">
-        <h4 className="font-semibold text-violet-300 mb-2">Contact Info</h4>
-        <p>Email: <a href="mailto:support@knowo.com" className="hover:text-violet-400">support@knowo.com</a><br />
-        Phone: <a href="tel:+919876543210" className="hover:text-violet-400">+91 98765 43210</a></p>
-      </div>
+     {/* Contact Details */}
+<div className="text-center md:text-left">
+  <h4 className="font-semibold text-violet-300 mb-2">Contact Info</h4>
+  <p>Email: <a href="mailto:support@knowo.com" className="hover:text-violet-400">support@knowo.com</a><br />
+  Tariw Ch: <a href="tel:+447881564071" className="hover:text-violet-400">+44 7881 564071</a></p>
+</div>
 
       {/* Office Address */}
       <div className="text-center md:text-left">
@@ -970,6 +984,20 @@ const LandingPage = () => {
     </div>
   </div>
 </footer>
+
+{/* Telegram Floating Button */}
+<a
+  href="https://t.me/KnowoOfficial"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed right-6 bottom-6 z-50 bg-[#0088cc] hover:bg-[#0077b3] text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-110 group"
+  aria-label="Join our Telegram"
+>
+  <FaTelegram className="text-2xl" />
+  <span className="absolute right-14 bottom-8 bg-gray-900 text-white text-sm py-1 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+    Join our Telegram
+  </span>
+</a>
 
     </div>
   );
