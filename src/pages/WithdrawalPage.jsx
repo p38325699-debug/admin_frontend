@@ -9,6 +9,8 @@ const WithdrawalPage = () => {
   const [withdrawals, setWithdrawals] = useState([]);
   const [allWithdrawals, setAllWithdrawals] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedWithdrawal, setSelectedWithdrawal] = useState(null);
+
   const [filters, setFilters] = useState({ 
     from: "", 
     to: "", 
@@ -44,6 +46,7 @@ const WithdrawalPage = () => {
       setLoading(false);
     }
   };
+  
 
   const calculateStats = (data) => {
     const total = data.length;
@@ -331,21 +334,34 @@ const WithdrawalPage = () => {
                   <th className="px-4 py-2 text-left font-semibold">User Info</th>
                   <th className="px-4 py-2 text-left font-semibold">Amount</th>
                   <th className="px-4 py-2 text-left font-semibold">Message</th>
+                  <th className="px-4 py-2 text-left font-semibold">Method</th>
+                  <th className="px-4 py-2 text-left font-semibold">Details</th>
                   <th className="px-4 py-2 text-left font-semibold">Status</th>
                   <th className="px-4 py-2 text-left font-semibold">Date</th>
                   <th className="px-4 py-2 text-left font-semibold">Actions</th>
                 </tr>
               </thead>
+
               <tbody>
                 {withdrawals.length > 0 ? (
                   withdrawals.map((withdrawal) => (
-                    <tr key={withdrawal.id} className="bg-[#1f1f1f] hover:bg-[#333] text-gray-300 transition-all duration-200">
-                      <td className="px-4 py-2 font-mono text-violet-400 text-xs">{withdrawal.id}</td>
+                    <tr
+                      key={withdrawal.id}
+                      className="bg-[#1f1f1f] hover:bg-[#333] text-gray-300 transition-all duration-200"
+                    >
+                      {/* ID */}
+                      <td className="px-4 py-2 font-mono text-violet-400 text-xs">
+                        {withdrawal.id}
+                      </td>
+
+                      {/* User Info */}
                       <td className="px-4 py-2">
                         <div className="space-y-0.5">
                           <div className="flex items-center gap-1">
                             <FaUser className="text-blue-400 text-xs" />
-                            <span className="text-xs">{withdrawal.full_name || `User ${withdrawal.user_id}`}</span>
+                            <span className="text-xs">
+                              {withdrawal.full_name || `User ${withdrawal.user_id}`}
+                            </span>
                           </div>
                           <div className="flex items-center gap-1">
                             <FaEnvelope className="text-green-400 text-xs" />
@@ -356,22 +372,56 @@ const WithdrawalPage = () => {
                           </div>
                         </div>
                       </td>
+
+                      {/* Amount */}
                       <td className="px-4 py-2">
                         <span className="font-bold text-white text-sm">
                           ₹{parseFloat(withdrawal.amount).toFixed(2)}
                         </span>
                       </td>
+
+                      {/* Message */}
                       <td className="px-4 py-2 max-w-[150px]">
-                        <div className="leading-relaxed text-xs" title={withdrawal.message}>
+                        <div
+                          className="leading-relaxed text-xs"
+                          title={withdrawal.message}
+                        >
                           {withdrawal.message || "No message"}
                         </div>
                       </td>
+
+                      {/* Method */}
                       <td className="px-4 py-2">
-                        <div className={`flex items-center gap-1 px-2 py-1 rounded border ${getStatusColor(withdrawal.status)}`}>
+                        <span className="text-xs font-medium text-blue-400 capitalize">
+                          {withdrawal.method || "N/A"}
+                        </span>
+                      </td>
+
+                      {/* Details */}
+                      <td className="px-4 py-2 max-w-[180px]">
+                        <button
+                          onClick={() => setSelectedWithdrawal(withdrawal)}
+                          className="text-xs cursor-pointer text-violet-400 hover:text-violet-300 underline"
+                        >
+                          View Details
+                        </button>
+                      </td>
+
+                      {/* Status */}
+                      <td className="px-4 py-2">
+                        <div
+                          className={`flex items-center gap-1 px-2 py-1 rounded border ${getStatusColor(
+                            withdrawal.status
+                          )}`}
+                        >
                           {getStatusIcon(withdrawal.status)}
-                          <span className="font-medium capitalize text-xs">{withdrawal.status}</span>
+                          <span className="font-medium capitalize text-xs">
+                            {withdrawal.status}
+                          </span>
                         </div>
                       </td>
+
+                      {/* Date */}
                       <td className="px-4 py-2">
                         <div className="flex items-center gap-1 text-gray-400">
                           <FaCalendar className="text-xs" />
@@ -380,6 +430,8 @@ const WithdrawalPage = () => {
                           </span>
                         </div>
                       </td>
+
+                      {/* Actions */}
                       <td className="px-4 py-2">
                         {getStatusButtons(withdrawal.status, withdrawal.id)}
                       </td>
@@ -387,13 +439,13 @@ const WithdrawalPage = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={7} className="px-4 py-6 text-center text-gray-400">
+                    <td colSpan={9} className="px-4 py-6 text-center text-gray-400">
                       <div className="flex flex-col items-center justify-center">
                         <FaHistory className="text-2xl mb-2 opacity-50" />
                         <p className="text-sm font-medium">No withdrawal requests found</p>
                         <p className="text-xs mt-0.5">
-                          {(filters.from || filters.to || filters.status !== "all") 
-                            ? "Try changing your filter criteria" 
+                          {(filters.from || filters.to || filters.status !== "all")
+                            ? "Try changing your filter criteria"
                             : "No withdrawal requests yet"}
                         </p>
                       </div>
@@ -405,6 +457,131 @@ const WithdrawalPage = () => {
           </div>
         </div>
       )}
+
+      {/* Add the popup rendering here */}
+      {selectedWithdrawal && (
+        <MethodDetailsPopup
+          withdrawal={selectedWithdrawal}
+          onClose={() => setSelectedWithdrawal(null)}
+        />
+      )}
+    </div>
+  );
+};
+
+const MethodDetailsPopup = ({ withdrawal, onClose }) => {
+  if (!withdrawal) return null;
+
+  // Convert method to lowercase for consistent comparison
+  const method = withdrawal.method?.toLowerCase();
+
+  return (
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+      <div className="bg-[#1f1f1f] border border-gray-700 rounded-lg p-6 w-96 max-w-90vw relative shadow-xl">
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 text-gray-400 hover:text-white text-lg"
+        >
+          ✕
+        </button>
+
+        <h3 className="text-lg font-bold text-violet-400 mb-4 text-center">
+          {withdrawal.method} Details
+        </h3>
+
+        <div className="space-y-4">
+          {/* Basic Information */}
+          <div className="bg-[#2a2a2a] rounded-lg p-3">
+            <h4 className="text-white font-semibold mb-2 text-sm">Basic Information</h4>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <span className="text-gray-400">Amount:</span>
+                <p className="text-white font-semibold">₹{parseFloat(withdrawal.amount).toFixed(2)}</p>
+              </div>
+              <div>
+                <span className="text-gray-400">Status:</span>
+                <p className="text-yellow-400 font-semibold capitalize">{withdrawal.status}</p>
+              </div>
+              <div className="col-span-2">
+                <span className="text-gray-400">Date:</span>
+                <p className="text-white">{new Date(withdrawal.created_at).toLocaleString()}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Method Specific Details */}
+          <div className="bg-[#2a2a2a] rounded-lg p-3">
+            <h4 className="text-white font-semibold mb-2 text-sm">Payment Details</h4>
+            
+            {method === "upi" && (
+              <div className="space-y-2 text-xs">
+                <div>
+                  <span className="text-gray-400">UPI Address:</span>
+                  <p className="text-white font-mono">{withdrawal.upi_address || "N/A"}</p>
+                </div>
+              </div>
+            )}
+
+            {method === "crypto" && (
+              <div className="space-y-2 text-xs">
+                <div>
+                  <span className="text-gray-400">Crypto Address:</span>
+                  <p className="text-white font-mono break-all">{withdrawal.crypto_address || "N/A"}</p>
+                </div>
+                <div>
+                  <span className="text-gray-400">Network:</span>
+                  <p className="text-white">{withdrawal.crypto_network || "N/A"}</p>
+                </div>
+              </div>
+            )}
+
+            {method === "bank" && (
+              <div className="space-y-2 text-xs">
+                <div>
+                  <span className="text-gray-400">Account Holder:</span>
+                  <p className="text-white">{withdrawal.bank_holder_name || "N/A"}</p>
+                </div>
+                <div>
+                  <span className="text-gray-400">Bank Name:</span>
+                  <p className="text-white">{withdrawal.bank_name || "N/A"}</p>
+                </div>
+                <div>
+                  <span className="text-gray-400">IFSC Code:</span>
+                  <p className="text-white font-mono">{withdrawal.ifsc_code || "N/A"}</p>
+                </div>
+              </div>
+            )}
+
+            {!["upi", "crypto", "bank"].includes(method) && (
+              <p className="text-gray-400 text-center text-xs">No payment details available.</p>
+            )}
+          </div>
+
+          {/* User Information */}
+          <div className="bg-[#2a2a2a] rounded-lg p-3">
+            <h4 className="text-white font-semibold mb-2 text-sm">User Information</h4>
+            <div className="space-y-2 text-xs">
+              <div>
+                <span className="text-gray-400">Full Name:</span>
+                <p className="text-white">{withdrawal.full_name || "N/A"}</p>
+              </div>
+              <div>
+                <span className="text-gray-400">Email:</span>
+                <p className="text-white">{withdrawal.email || "N/A"}</p>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+        {/* Message if available */}
+        {withdrawal.message && (
+          <div className="bg-[#2a2a2a] rounded-lg p-3 mt-3">
+            <h4 className="text-white font-semibold mb-2 text-sm">Message</h4>
+            <p className="text-gray-300 text-xs">{withdrawal.message}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

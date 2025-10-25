@@ -4,8 +4,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 
 const Header = () => {
   return (
-    <header className="bg-gradient-to-r from-gray-900 to-black rounded-lg ml-64 border border-gray-800 w-[calc(100vw-16rem)] shadow-2xl px-6 py-4 flex justify-between items-center backdrop-blur-sm bg-opacity-95">
-      <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent ml-4">
+    <header className="bg-gradient-to-r from-gray-900 to-black rounded-lg ml-4 border border-gray-800 w-[calc(100vw-16rem)] shadow-2xl px-6 py-4 flex justify-between items-center backdrop-blur-sm bg-opacity-95">
+      <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent ml-0">
         Admin Panel
       </h1>
 
