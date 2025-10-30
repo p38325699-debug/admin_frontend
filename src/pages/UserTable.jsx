@@ -276,7 +276,7 @@ const getStatusDate = (user) => {
               <th className="px-6 py-3 text-left">Created At</th>
               <th className="px-6 py-3 text-left">Status</th>
               <th className="px-6 py-3 text-left">Pause/Block Date</th>
-              <th className="px-6 py-3 text-left">Action</th>
+              {/* <th className="px-6 py-3 text-left">Action</th> */}
             </tr>
           </thead>
 
@@ -460,14 +460,14 @@ const getStatusDate = (user) => {
 </td>
 
                   {/* Delete button */}
-                  <td className="px-6 py-4">
+                  {/* <td className="px-6 py-4">
                     <button
                       onClick={() => handleDelete(u.id)}
                       className="text-red-500 hover:text-red-700"
                     >
                       <FaTrash />
                     </button>
-                  </td>
+                  </td> */}
                 </tr>
               ))
             )}
