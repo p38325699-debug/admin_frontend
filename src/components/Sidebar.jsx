@@ -27,6 +27,8 @@ const Sidebar = () => {
     { path: "/upi-scanner", label: "UPI Scanner", icon: <CloudUploadIcon /> },
     { path: "/notifications", label: "Notifications", icon: <NotificationsIcon /> },
     { path: "/withdrawal", label: "Withdrawal", icon: <AccountBalanceWalletIcon /> },
+    { path: "/gold-members", label: "Gold Members", icon: <PeopleIcon /> },
+
   ];
 
   return (

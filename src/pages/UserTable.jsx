@@ -267,6 +267,7 @@ const getStatusDate = (user) => {
               <th className="px-6 py-3 text-left">Verified</th>
               <th className="px-6 py-3 text-left">Wallet</th>
               <th className="px-6 py-3 text-left">Business Plan</th>
+              <th className="px-6 py-3 text-left">Gold1 Count</th> 
               {/* <th className="px-6 py-3 text-left">Payment Status</th> */}
               <th className="px-6 py-3 text-left">Day Count</th>
               <th className="px-6 py-3 text-left">Trust</th>
@@ -356,6 +357,7 @@ const getStatusDate = (user) => {
                   </td>
 
                   <td className="px-6 py-4">{u.business_plan || "-"}</td>
+<td className="p-3">{u.gold1_count}</td>
                   {/* <td className="px-6 py-4">{u.payment_status ? "✅" : "❌"}</td> */}
 
  {/* <td className="px-6 py-4">
@@ -460,14 +462,14 @@ const getStatusDate = (user) => {
 </td>
 
                   {/* Delete button */}
-                  {/* <td className="px-6 py-4">
+                  <td className="px-6 py-4">
                     <button
                       onClick={() => handleDelete(u.id)}
                       className="text-red-500 hover:text-red-700"
                     >
                       <FaTrash />
                     </button>
-                  </td> */}
+                  </td>
                 </tr>
               ))
             )}
