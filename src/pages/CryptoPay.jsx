@@ -54,6 +54,7 @@ export default function CryptoPaymentsPage() {
       setLoading(true);
       console.log("Fetching payments from:", `${API_BASE_URL}/api/admin/all-payments`);
       
+      // const res = await axios.get(`${API_BASE_URL}/api/admin/all-payments`);
       const res = await axios.get(`${API_BASE_URL}/api/admin/all-payments`);
       console.log("API Response:", res.data);
       
@@ -153,9 +154,13 @@ export default function CryptoPaymentsPage() {
     if (!window.confirm(`Are you sure you want to mark this as ${newStatus}?`)) return;
 
     try {
-      const res = await axios.put(`${API_BASE_URL}/api/admin/payments/${id}/status`, {
+      // const res = await axios.put(`${API_BASE_URL}/api/admin/payments/${id}/status`, {
+      //   payment_status: newStatus
+      // });
+
+      const update = await axios.put(`${API_BASE_URL}/api/admin/payments/${id}/status`, { 
         payment_status: newStatus
-      });
+       });
 
       if (res.data.success) {
         Swal.fire("Updated!", "Payment status updated successfully.", "success");

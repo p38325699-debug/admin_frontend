@@ -267,7 +267,7 @@ const getStatusDate = (user) => {
               <th className="px-6 py-3 text-left">Verified</th>
               <th className="px-6 py-3 text-left">Wallet</th>
               <th className="px-6 py-3 text-left">Business Plan</th>
-              <th className="px-6 py-3 text-left">Payment Status</th>
+              {/* <th className="px-6 py-3 text-left">Payment Status</th> */}
               <th className="px-6 py-3 text-left">Day Count</th>
               <th className="px-6 py-3 text-left">Trust</th>
               <th className="px-6 py-3 text-left">Under Ref</th>
@@ -358,7 +358,7 @@ const getStatusDate = (user) => {
                   <td className="px-6 py-4">{u.business_plan || "-"}</td>
                   {/* <td className="px-6 py-4">{u.payment_status ? "✅" : "❌"}</td> */}
 
- <td className="px-6 py-4">
+ {/* <td className="px-6 py-4">
    {u.payment_status ? (
      <button
        className="bg-green-500 text-white px-3 py-1 rounded cursor-not-allowed"
@@ -399,7 +399,7 @@ const getStatusDate = (user) => {
        Approve
      </button>
    )}
-</td>
+</td> */}
 
                   <td className="px-6 py-4">{u.day_count ?? "-"}</td>
                   
