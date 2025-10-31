@@ -66,9 +66,9 @@ const Login = () => {
           </button>
         </form>
 
-        <p className="text-center text-gray-500 text-sm mt-6">
+        {/* <p className="text-center text-gray-500 text-sm mt-6">
           Default credentials: <span className="text-gray-300">admin@gmail.com</span> / <span className="text-gray-300">admin123</span>
-        </p>
+        </p> */}
       </div>
     </div>
   );

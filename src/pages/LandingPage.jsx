@@ -868,10 +868,10 @@ if (location.pathname !== '/') {
                   <div>
                     <p className="font-semibold">Support</p>
                     <a 
-                      href="tel:+919876543210" 
+                      href="tel:+447881564071" 
                       className="hover:underline"
                     >
-                      +91 98765 43210
+                      +44 7881564071
                     </a>
                   </div>
                 </div>
@@ -959,7 +959,7 @@ if (location.pathname !== '/') {
 <div className="text-center md:text-left">
   <h4 className="font-semibold text-violet-300 mb-2">Contact Info</h4>
   <p>Email: <a href="mailto:support@knowo.com" className="hover:text-violet-400">support@knowo.com</a><br />
-  Tariw Ch: <a href="tel:+447881564071" className="hover:text-violet-400">+44 7881 564071</a></p>
+  Tariw Ch: <a href="tel:+447881564071" className="hover:text-violet-400">+44 7881564071</a></p>
 </div>
 
       {/* Office Address */}

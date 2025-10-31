@@ -357,7 +357,9 @@ const getStatusDate = (user) => {
                   </td>
 
                   <td className="px-6 py-4">{u.business_plan || "-"}</td>
-<td className="p-3">{user.gold1_count}</td>
+{/* <td className="p-3">{user.gold1_count}</td> */}
+<td className="p-3">{u.gold1_count}</td>
+
                   {/* <td className="px-6 py-4">{u.payment_status ? "✅" : "❌"}</td> */}
 
  {/* <td className="px-6 py-4">
