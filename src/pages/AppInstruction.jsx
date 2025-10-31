@@ -19,7 +19,8 @@ const AppInstruction = () => {
   // Auto-download handler
   const handleDownload = () => {
     const apkUrl =
-      "https://expo.dev/artifacts/eas/bQVo3k7xuagiH724Z7ZCUT.apk";
+      "https://expo.dev/artifacts/eas/fnCEdsCN2Ci2xotwooLyNg.apk";
+      
     const link = document.createElement("a");
     link.href = apkUrl;
     link.download = "KnowoApp.apk";
