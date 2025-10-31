@@ -23,6 +23,7 @@ import AboutUs from "./pages/AboutUs";
 import AppInstruction from "./pages/AppInstruction";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import GoldMembers from "./pages/GoldMembers";
+import PlanPurchases from "./pages/PlanPurchases";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -93,6 +94,7 @@ const hiddenRoutes = [
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/app-instruction" element={<AppInstruction />} />
 <Route path="/gold-members" element={<GoldMembers />} />
+<Route path="/plan-purchases" element={<PlanPurchases />} />
 
 
             {/* Default fallback */}
