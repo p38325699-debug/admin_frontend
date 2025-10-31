@@ -9,7 +9,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin"; // 🪙 Crypto icon
+import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin"; 
+import ContactMailIcon from "@mui/icons-material/ContactMail";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -29,6 +30,7 @@ const Sidebar = () => {
     { path: "/withdrawal", label: "Withdrawal", icon: <AccountBalanceWalletIcon /> },
     { path: "/gold-members", label: "Gold Members", icon: <PeopleIcon /> },
     { path: "/plan-purchases", label: "Plan Purchases", icon: <AssignmentIcon /> },
+     { path: "/contact-msg", label: "Contact Msg", icon: <ContactMailIcon /> },
 
 
   ];

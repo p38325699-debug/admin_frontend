@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import React, { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 
@@ -24,50 +25,48 @@ import AppInstruction from "./pages/AppInstruction";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import GoldMembers from "./pages/GoldMembers";
 import PlanPurchases from "./pages/PlanPurchases";
+import ContactMsg from "./pages/ContactMsg";
 
 const AppLayout = () => {
   const location = useLocation();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // ✅ toggle state
 
-  console.log("✅ API BASE URL:", import.meta.env.VITE_API_BASE_URL);
-
-// Hide sidebar & header on specific routes
-const hiddenRoutes = [
-  "/",
-  "/admin",
-  "/privacy-policy",
-  "/terms-and-conditions",
-  "/contact",
-  "/refund-policy",     // ✅ hide layout on refund policy
-  "/about-us",          // ✅ hide layout on about us
-  "/app-instruction"    // ✅ hide layout on app instruction
-];
-
+  const hiddenRoutes = [
+    "/",
+    "/admin",
+    "/privacy-policy",
+    "/terms-and-conditions",
+    "/contact",
+    "/refund-policy",
+    "/about-us",
+    "/app-instruction",
+  ];
 
   const hideLayout = hiddenRoutes.includes(location.pathname);
 
   return (
     <div className="flex bg-black min-h-screen text-white">
-      {/* Sidebar */}
-      {!hideLayout && (
-        <div className="fixed top-0 left-0 h-full w-60 bg-gray-900 z-40">
+      {/* ✅ Sidebar toggle logic */}
+      {!hideLayout && isSidebarOpen && (
+        <div className="fixed top-0 left-0 h-full w-60 bg-gray-900 z-40 transition-all duration-300">
           <Sidebar />
         </div>
       )}
 
-      {/* Main Area */}
+      {/* ✅ Right content area */}
       <div
         className={`flex-1 flex flex-col transition-all duration-300 ${
-          !hideLayout ? "ml-60" : ""
+          !hideLayout && isSidebarOpen ? "ml-60" : "ml-0"
         }`}
       >
-        {/* Header */}
+        {/* ✅ Header with toggle button */}
         {!hideLayout && (
           <div className="sticky top-0 z-30 bg-gray-950 shadow-md">
-            <Header />
+            <Header onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
           </div>
         )}
 
-        {/* Page Content */}
+        {/* ✅ Page content */}
         <main className="flex-1 p-6">
           <Routes>
             {/* Public Routes */}
@@ -93,9 +92,9 @@ const hiddenRoutes = [
             <Route path="/settings" element={<Settings />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/app-instruction" element={<AppInstruction />} />
-<Route path="/gold-members" element={<GoldMembers />} />
-<Route path="/plan-purchases" element={<PlanPurchases />} />
-
+            <Route path="/gold-members" element={<GoldMembers />} />
+            <Route path="/plan-purchases" element={<PlanPurchases />} />
+            <Route path="/contact-msg" element={<ContactMsg />} />
 
             {/* Default fallback */}
             <Route path="*" element={<Dashboard />} />

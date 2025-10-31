@@ -564,7 +564,7 @@ if (location.pathname !== '/') {
               { id: "home", label: "Home" },
               { id: "about", label: "About" },
               { id: "features", label: "Features" },
-              { id: "pricing", label: "Pricing" },
+              // { id: "pricing", label: "Pricing" },
               { id: "testimonials", label: "Testimonials" },
               { id: "contact", label: "Contact" }
             ].map((item) => (
@@ -598,7 +598,7 @@ if (location.pathname !== '/') {
                 { id: "home", label: "Home" },
                 { id: "about", label: "About" },
                 { id: "features", label: "Features" },
-                { id: "pricing", label: "Pricing" },
+                // { id: "pricing", label: "Pricing" },
                 { id: "testimonials", label: "Testimonials" },
                 { id: "contact", label: "Contact" }
               ].map((item) => (
@@ -737,11 +737,10 @@ if (location.pathname !== '/') {
     
 
 {/* UPDATED Pricing Plans Section - Cryptomus Compliant */}
-<section id="pricing" className="py-20 px-6 bg-black">
+{/* <section id="pricing" className="py-20 px-6 bg-black">
   <div className="max-w-6xl mx-auto">
     <h2 className="text-4xl font-bold mb-6 text-center text-violet-400">Learning Plans</h2>
     
-    {/* Crypto Compliance Banner */}
     <div className="max-w-2xl mx-auto mb-12 p-4 border-l-4 border-violet-400 bg-gray-900 text-gray-300 text-sm rounded-lg">
       ⚠️ Note: Cryptocurrency payments are accepted <strong>only for purchasing learning plans</strong>. 
       No financial returns, profit, or investment gains are associated with these payments. 
@@ -771,7 +770,6 @@ if (location.pathname !== '/') {
             {plan.description}
           </p>
           
-          {/* Optional Button */}
           {plan.price !== "Free" && (
             <button className="w-full bg-gradient-to-r from-violet-500 to-purple-600 py-3 rounded-xl font-semibold text-white hover:opacity-90 shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40 transition-all duration-300">
               Buy with Crypto
@@ -781,7 +779,7 @@ if (location.pathname !== '/') {
       ))}
     </div>
   </div>
-</section>
+</section> */}
 
       {/* Enhanced Testimonials */}
       <section id="testimonials" className="py-12 px-6 bg-gradient-to-b from-black to-gray-900">
@@ -959,7 +957,7 @@ if (location.pathname !== '/') {
 <div className="text-center md:text-left">
   <h4 className="font-semibold text-violet-300 mb-2">Contact Info</h4>
   <p>Email: <a href="mailto:support@knowo.com" className="hover:text-violet-400">support@knowo.com</a><br />
-  Tariw Ch: <a href="tel:+447881564071" className="hover:text-violet-400">+44 7881564071</a></p>
+  Ph no: <a href="tel:+447881564071" className="hover:text-violet-400">+44 7881564071</a></p>
 </div>
 
       {/* Office Address */}
