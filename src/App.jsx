@@ -96,7 +96,7 @@ const AppLayout = () => {
             <Route path="/gold-members" element={<GoldMembers />} />
             <Route path="/plan-purchases" element={<PlanPurchases />} />
             <Route path="/contact-msg" element={<ContactMsg />} />
-            <Route path="/ref-redirect" element={<RefRedirect/>} />
+            <Route path="/referral" element={<RefRedirect/>} />
 
 
             {/* Default fallback */}
