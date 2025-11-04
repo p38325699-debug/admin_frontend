@@ -4,7 +4,6 @@ import React from "react";
 import LandingPage from "./pages/LandingPage";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
-import ContactMsg from "./pages/ContactMsg";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import TermsConditions from "./pages/TermsConditions";
@@ -34,7 +33,7 @@ const AppLayout = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/contact-msg" element={<ContactMsg />} />
+          {/* <Route path="/contact-msg" element={<ContactMsg />} /> */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/refund-policy" element={<RefundPolicyPage />} />
           <Route path="/terms-and-conditions" element={<TermsConditions />} />

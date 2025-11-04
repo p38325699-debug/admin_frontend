@@ -4,8 +4,14 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/', // important for correct routing on custom domains
+  base: '/', 
   build: {
     outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        openApp: 'open-app.html',   // ✅ tell Vite to include this file
+      }
+    }
   },
 })
