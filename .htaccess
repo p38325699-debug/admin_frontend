@@ -1,5 +1,12 @@
 Options -MultiViews
 RewriteEngine On
+
+# ✅ Serve open-app.html directly
+RewriteRule ^open-app$ open-app.html [L]
+
+# ✅ Let existing files and folders load normally
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+# ✅ All other routes go to React
 RewriteRule ^ index.html [QSA,L]
