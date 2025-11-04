@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Opening Knowo App...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const deepLink = decodeURIComponent(params.get("deep") || "");
+      const fallback = decodeURIComponent(params.get("fallback") || "https://knowo.world/app-instruction");
+
+      if (!deepLink) {
+        window.location.href = fallback;
+        return;
+      }
+
+      // Try opening the app
+      const start = Date.now();
+      window.location.href = deepLink;
+
+      // If not opened in 2 seconds, go to fallback
+      setTimeout(() => {
+        const hidden = document.hidden || document.webkitHidden;
+        if (!hidden && Date.now() - start < 2500) {
+          window.location.href = fallback;
+        }
+      }, 2000);
+    };
+  </script>
+</head>
+<body>
+  <p>Opening Knowo app... If it doesn't open, <a id="manual" href="#">click here</a>.</p>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const deepLink = decodeURIComponent(params.get("deep") || "");
+    document.getElementById("manual").href = deepLink;
+  </script>
+</body>
+</html>
