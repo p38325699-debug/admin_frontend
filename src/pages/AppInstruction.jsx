@@ -18,8 +18,8 @@ const AppInstruction = () => {
 
   // Auto-download handler
   const handleDownload = () => {
-    const apkUrl =
-      "https://expo.dev/artifacts/eas/wv1weRLMmPCtvNFeAuTjEx.apk";
+    const apkUrl = 
+      "https://expo.dev/artifacts/eas/hB9xcynwQfz9ThdiFUHKL4.apk";
       
       
     const link = document.createElement("a");
