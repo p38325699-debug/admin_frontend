@@ -1,10 +1,10 @@
 Options -MultiViews
 RewriteEngine On
 
-# If the request is specifically for /open-app, serve open-app.html
-RewriteRule ^open-app$ /open-app.html [L]
+# Serve open-app.html for /open-app
+RewriteRule ^open-app$ open-app.html [L,QSA]
 
-# If not an existing file or folder, route to index.html (React SPA fallback)
+# Default Vite SPA routing rule
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [QSA,L]
