@@ -26,6 +26,7 @@ import RefundPolicyPage from "./pages/RefundPolicyPage";
 import GoldMembers from "./pages/GoldMembers";
 import PlanPurchases from "./pages/PlanPurchases";
 import ContactMsg from "./pages/ContactMsg";
+import RefRedirect from "./pages/RefRedirect";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -95,6 +96,8 @@ const AppLayout = () => {
             <Route path="/gold-members" element={<GoldMembers />} />
             <Route path="/plan-purchases" element={<PlanPurchases />} />
             <Route path="/contact-msg" element={<ContactMsg />} />
+            <Route path="/ref-redirect" element={<RefRedirect/>} />
+
 
             {/* Default fallback */}
             <Route path="*" element={<Dashboard />} />
